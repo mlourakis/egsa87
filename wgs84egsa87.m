@@ -6,7 +6,7 @@
 %    lambda     - longitude in radians
 %
 % Returns
-%    x, y, z    - GSA87 coordinates (meters)
+%    x, y, z    - EGSA87 coordinates (meters)
 
 % see https://en.wikipedia.org/wiki/Hellenic_Geodetic_Reference_System_1987
 %
@@ -23,7 +23,7 @@ function [x y z] = wgs84egsa87(phi, lambda)
 
 % wgs84_philambda_to_xy
 
-%1. displace_geodetic_system
+%1. displace_geodetic_system: phi, lambda --> phi2, lambda2
   %1.1 philambda_to_xyz()
   e2=1 - (1 - 1/GE_WGS84_F_INV)^2;
   rad=GE_WGS84_Alpha/sqrt(1-e2*sin(phi)*sin(phi));
@@ -68,7 +68,7 @@ function [x y z] = wgs84egsa87(phi, lambda)
   et2=e2/((1-f)*(1-f));
   phi2=atan( z2*(1+et2) / sqrt(x2*x2+y2*y2) );
   acount=0;
-  aradius_old=10*aradius;
+  aradius_old=Inf;
   while(abs(aradius-aradius_old)>0.00005 && acount<100)
     acount=acount+1;
     aradius_old=aradius;
