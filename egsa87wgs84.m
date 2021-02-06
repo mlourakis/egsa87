@@ -2,22 +2,22 @@
 %
 % [phi lambda] = egsa87wgs84(x, y, z) 
 %
-%    x,y,z       - EGSA87 coordinates (meters)
+%    x, y        - EGSA87 coordinates (meters)
 %
 % Returns
 %    phi, lambda - latitude & longitude in radians
 
 % see https://en.wikipedia.org/wiki/Hellenic_Geodetic_Reference_System_1987
+% Based on icoordstrans -- https://github.com/skozan/icoordstrans/
 %
-% Manolis Lourakis 2020;   based on icoordstrans -- https://github.com/skozan/icoordstrans/
+% Manolis Lourakis 2020
 % Institute of Computer Science, Foundation for Research & Technology - Hellas
 % Heraklion, Crete, Greece
 
 % Feb  2020  - Initial version. (v. 1.0)
+% Feb  2021  - Minor update. (v. 1.1)
 
-%CHECK gamma, zz
-
-function [phi lambda gamma] = egsa87wgs84(x, y, zz)
+function [phi lambda gamma] = egsa87wgs84(x, y)
   GE_WGS84_Alpha=6378137.000;
   GE_WGS84_F_INV=298.257223563;
 
@@ -61,7 +61,7 @@ function [phi lambda gamma] = egsa87wgs84(x, y, zz)
     f0=f0 + (l - Mi)/(GE_WGS84_Alpha/sqrt(1-e2*sin(f0)*sin(f0))); % ellipsoid_main_normal_section_radius(f0);
   end
 
-  N0=GE_WGS84_Alpha/sqrt(1-e2*sin(f0)*sin(f0));% ellipsoid_main_normal_section_radius(f0);
+  N0=GE_WGS84_Alpha/sqrt(1-e2*sin(f0)*sin(f0)); % ellipsoid_main_normal_section_radius(f0);
   t=tan(f0);
   n2=et2*cos(f0)*cos(f0);
   P=(x/(kappa0*N0));
@@ -124,9 +124,8 @@ function [phi lambda gamma] = egsa87wgs84(x, y, zz)
   while(abs(aradius-aradius_old)>0.00005 && acount<100)
     acount=acount+1;
     aradius_old=aradius;
-    aradius=GE_WGS84_Alpha/sqrt(1-e2*sin(phi)*sin(phi));% ellipsoid_main_normal_section_radius(phi);
+    aradius=GE_WGS84_Alpha/sqrt(1-e2*sin(phi)*sin(phi)); % ellipsoid_main_normal_section_radius(phi);
     phi=atan( (z2+e2*aradius*sin(phi)) / sqrt(x2*x2+y2*y2) );
   end
 
 end
-
