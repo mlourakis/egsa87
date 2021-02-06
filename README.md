@@ -4,3 +4,6 @@ Matlab functions to convert geodetic coordinates from the [World Geodetic System
 Code is based on the [icoordstrans](https://github.com/skozan/icoordstrans) library.
 
 Disclaimer: Use these conversion functions at your own risk. No warranties are made regarding the accuracy and reliability of the provided code. 
+
+
+For an overview of spatial referencing, see this: https://unstats.un.org/Unsd/geoinfo/UNGEGN/docs/_data_ICAcourses/_HtmlModules/_Documents/D06/documents/D06-03_KnippersPPTeaching.pdf
