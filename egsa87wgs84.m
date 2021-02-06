@@ -17,7 +17,7 @@
 % Feb  2020  - Initial version. (v. 1.0)
 % Feb  2021  - Minor update. (v. 1.1)
 
-function [phi lambda gamma] = egsa87wgs84(x, y)
+function [phi lambda] = egsa87wgs84(x, y)
   GE_WGS84_Alpha=6378137.000;
   GE_WGS84_F_INV=298.257223563;
 
@@ -42,7 +42,7 @@ function [phi lambda gamma] = egsa87wgs84(x, y)
   f0=l/GE_WGS84_Alpha;
   f0_old=10*f0;
   acount=0;
-  while(abs(f0-f0_old)>1e-17 && acount<100);
+  while(abs(f0-f0_old)>1e-17 && acount<100)
     acount=acount+1;
     f0_old=f0;
 
@@ -74,8 +74,8 @@ function [phi lambda gamma] = egsa87wgs84(x, y)
   lambda2=((((5+6*n2+28*t*t+8*t*t*n2+24*t*t*t*t)*P2/120 -...
     (1+2*t*t+n2)/6)*P2+1)*P)/cos(f0) + lambda0;
 
-  gamma=x*t/(kappa0*N0)-t*(1+t*t-n2-2*n2*n2)*x*x*x/(3*kappa0*kappa0*kappa0*N0*N0*N0)+...
-    t*(2+5*t*t+3*t*t*t*t)*(x/(kappa0*N0))^5/15;
+  %gamma=x*t/(kappa0*N0)-t*(1+t*t-n2-2*n2*n2)*x*x*x/(3*kappa0*kappa0*kappa0*N0*N0*N0)+...
+  % t*(2+5*t*t+3*t*t*t*t)*(x/(kappa0*N0))^5/15;
 
 
 %2. displace_geodetic_system: phi2, lambda2 --> phi, lambda
