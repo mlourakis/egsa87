@@ -13,5 +13,4 @@ Use these conversion functions at your own risk. No warranties are made regardin
 GPL
 
 ### Funding
-Development has received funding from the European Union’s Horizon 2020 Research and Innovation program under grant agreement No 826506 (sustAGE -- https://www.sustage.eu/). 
-
+_Development has received funding from the European Union’s Horizon 2020 Research and Innovation program under grant agreement No 826506 -- [sustAGE](https://www.sustage.eu/)._
